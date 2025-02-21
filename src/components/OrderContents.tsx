@@ -9,11 +9,11 @@ type orderContentsProps = {
 
 export default function OrderContents({order, removeItem}: orderContentsProps) {
   return (
-    <div className='space-y-3'>
+    <div className='bg-amber-500 rounded-3xl p-2 space-y-3'>
         {order.map(item => (
             <div
                 key={item.id}
-                className="bg-amber-500 p-2 rounded-3xl items-center border-double border-black py-5 grid md:grid-cols-2"
+                className=" p-2 items-center border-double border-b border-black py-5 grid md:grid-cols-2 "
                 >
                     
                 <div>
