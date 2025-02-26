@@ -4,6 +4,7 @@ import { MenuItem, OrderItem } from "../types"
 export default function useOrder() {
 
     const [order, setOrder] = useState<OrderItem[]>([])
+    const [tip, setTip] = useState(0)
 
     function addItem (item: MenuItem) {
         const itemExists = order.find(orderItem => orderItem.id === item.id)
@@ -22,10 +23,20 @@ export default function useOrder() {
             setOrder(order.filter(orderItem => orderItem.id !== item))
         }
     
+    function placeOrder (){
+        setOrder([])
+        setTip(0)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+    }
+    
 
   return {
     order,
+    tip,
+    setTip,
     addItem,
-    removeItem
+    removeItem,
+    placeOrder
   }
 }

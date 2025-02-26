@@ -1,12 +1,15 @@
 import MenuItems from "./components/MenuItems"
 import OrderContents from "./components/OrderContents"
+import TipAmount from "./components/TipAmount"
+import OrderTotal from "./components/OrderTotal"
+import { ToastContainer } from "react-toastify"
 import { menuItems } from "./data/db"
 import useOrder from "./hooks/useOrder"
 
 
 function App() {
   
-  const {order, addItem, removeItem} = useOrder()
+  const {order, tip, setTip, addItem, removeItem, placeOrder} = useOrder()
 
   return (
     <>
@@ -36,22 +39,43 @@ function App() {
         </div>
       </div>
 
+
       <div className="p-5">
 
         <h2 className="text-center  text-4xl font-black">Ordenes</h2>
 
       <div className="bg-amber-500 border border-dashed border-slate-300 p-5 rounded-2xl space-y-5 mt-10">
-          <OrderContents 
+          {order.length ? (
+            <>
+            <OrderContents 
             order={order}
             removeItem={removeItem}
           />
+          <TipAmount
+            setTip={setTip}
+            tip={tip}
           
-      
+          />
+
+          <OrderTotal
+            order={order}
+            tip={tip}
+            placeOrder={placeOrder}
+          
+          />
+            </>
+          ) : 
+          
+          <p className="text-bold text-2xl text-center">La Orden Esta Vacia!</p>
+
+          }
       </div>
 
       </div>
 
     </div>
+    <ToastContainer />
+
 
     </main>
       
